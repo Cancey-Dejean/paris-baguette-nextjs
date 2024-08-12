@@ -3,12 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
 import useScrollDirection from "@/hooks/useScrollDirection";
 import useScrolled from "@/hooks/useScrolled";
 import { twMerge } from "tailwind-merge";
-import { EpClose, SolarHamburgerMenuOutline } from "@/constants/svgIcons";
-import useBodyOverflow from "@/hooks/useBodyOverflow";
+import useCloseMobileMenuOnResize from "@/hooks/useCloseMobileMenuOnResize";
+import MobileMenu from "@/components/Header/MobileMenu";
 
 const navigation = [
   {
@@ -57,29 +56,24 @@ export default function Header() {
     }
   }, [scrollDirection]);
 
-  useBodyOverflow(mobileIsOpen);
-
-  const handleMobileMenu = () => {
-    setMobileIsOpen(!mobileIsOpen);
-  };
+  // Close mobile menu on window resize
+  useCloseMobileMenuOnResize(() => setMobileIsOpen(false));
 
   return (
     <>
       <header
         className={twMerge(
-          "fixed top-0 z-50 mx-auto flex h-[90px] w-full items-center justify-between gap-4 bg-primary px-7 text-white transition-all duration-300 ease-in-out",
+          "fixed top-0 z-50 mx-auto flex h-[90px] w-full items-center justify-between gap-4 bg-primary px-5 text-white transition-all duration-300 ease-in-out lg:px-7",
           !isScrolled ? "bg-transparent" : "",
           window.scrollY > 0 ? "bg-primary" : "",
+          mobileIsOpen ? "opacity-0" : "opacity-100",
         )}
       >
         <Link
           href="/"
-          className={twMerge(
-            "relative block h-[20px] w-[300px]",
-            mobileIsOpen ? "z-[51]" : "",
-          )}
-          onClick={() => setMobileIsOpen(false)}
+          className="relative block h-[17px] w-[250px] lg:h-[20px] lg:w-[300px]"
         >
+          <span className="sr-only">Link to homepage</span>
           <Image src="/images/paris-logo.svg" alt="Logo" fill />
         </Link>
 
@@ -146,29 +140,13 @@ export default function Header() {
           ))}
         </ul>
 
-        <div
-          className={twMerge("flex lg:hidden", mobileIsOpen ? "z-[51]" : "")}
-        >
-          <button
-            type="button"
-            className={twMerge(
-              "relative size-9",
-              "[&_svg]:absolute [&_svg]:left-1/2 [&_svg]:top-1/2 [&_svg]:size-9 [&_svg]:translate-x-[-50%] [&_svg]:translate-y-[-50%] [&_svg]:text-primary",
-              mobileIsOpen ? "[&_svg]:text-secondary" : "[&_svg]:text-white",
-            )}
-            onClick={handleMobileMenu}
-          >
-            <SolarHamburgerMenuOutline
-              className={
-                mobileIsOpen ? "hidden opacity-0" : "block opacity-100"
-              }
-            />
-            <EpClose
-              className={
-                mobileIsOpen ? "block opacity-100" : "hidden opacity-0"
-              }
-            />
-          </button>
+        <div className="inline-block lg:hidden">
+          <MobileMenu
+            navigation={navigation}
+            callToAction={callToAction}
+            mobileIsOpen={mobileIsOpen}
+            setMobileIsOpen={setMobileIsOpen}
+          />
         </div>
       </header>
 
@@ -177,23 +155,5 @@ export default function Header() {
       {/*  setMobileIsOpen={{ setMobileIsOpen }}*/}
       {/*/>*/}
     </>
-  );
-}
-
-function MobileMenu({
-  mobileIsOpen,
-  setMobileIsOpen,
-}: {
-  mobileIsOpen: boolean;
-  setMobileIsOpen: any;
-}) {
-  return (
-    <div
-      className={twMerge(
-        mobileIsOpen ? "fixed z-[49] h-full w-full bg-[#000]" : "",
-      )}
-    >
-      Menu
-    </div>
   );
 }

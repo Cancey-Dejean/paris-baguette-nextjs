@@ -84,3 +84,7 @@
         @apply font-pbBold;
     }
 }
+
+.hide-overflow {
+    @apply overflow-hidden;
+}
