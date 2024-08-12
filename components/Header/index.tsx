@@ -8,8 +8,9 @@ import useScrolled from "@/hooks/useScrolled";
 import { twMerge } from "tailwind-merge";
 import useCloseMobileMenuOnResize from "@/hooks/useCloseMobileMenuOnResize";
 import MobileMenu from "@/components/Header/MobileMenu";
+import { LinkItem, Navigation } from "@/types/types";
 
-const navigation = [
+const navigation: Navigation = [
   {
     label: "Menu",
     url: "/",
@@ -63,7 +64,7 @@ export default function Header() {
     <>
       <header
         className={twMerge(
-          "fixed top-0 z-50 mx-auto flex h-[90px] w-full items-center justify-between gap-4 bg-primary px-5 text-white transition-all duration-300 ease-in-out lg:px-7",
+          "fixed top-0 z-50 mx-auto flex w-full items-center justify-between gap-4 bg-primary p-5 text-white transition-all duration-300 ease-in-out lg:p-7",
           !isScrolled ? "bg-transparent" : "",
           window.scrollY > 0 ? "bg-primary" : "",
           mobileIsOpen ? "opacity-0" : "opacity-100",
@@ -84,41 +85,31 @@ export default function Header() {
               hidden ? "translate-y-full" : "translate-y-0",
             )}
           >
-            {navigation.map(
-              ({
-                label,
-                url,
-                newTab,
-              }: {
-                label: string;
-                url: string;
-                newTab?: boolean;
-              }) => (
-                <li key={label}>
-                  <Link
-                    href={url}
-                    target={newTab ? "_blank" : "_self"}
-                    rel={newTab ? "noopener noreferrer" : undefined}
-                    className="group px-2.5 py-1.5 font-pbBold"
+            {navigation.map(({ label, url, newTab }: LinkItem) => (
+              <li key={label}>
+                <Link
+                  href={url}
+                  target={newTab ? "_blank" : "_self"}
+                  rel={newTab ? "noopener noreferrer" : undefined}
+                  className="group px-2.5 py-1.5 font-pbBold"
+                >
+                  <span
+                    className={twMerge(
+                      "relative",
+                      "after:bottom-0 after:mx-auto after:block after:h-0.5 after:w-0 after:translate-x-1/2 after:bg-secondary after:opacity-0 after:transition-all after:duration-200 after:ease-in-out after:content-['']",
+                      "group-hover:after:w-[calc(100%-15px)] group-hover:after:translate-x-0 group-hover:after:opacity-100",
+                    )}
                   >
-                    <span
-                      className={twMerge(
-                        "relative",
-                        "after:bottom-0 after:mx-auto after:block after:h-0.5 after:w-0 after:translate-x-1/2 after:bg-secondary after:opacity-0 after:transition-all after:duration-200 after:ease-in-out after:content-['']",
-                        "group-hover:after:w-[calc(100%-15px)] group-hover:after:translate-x-0 group-hover:after:opacity-100",
-                      )}
-                    >
-                      {label}
-                    </span>
-                  </Link>
-                </li>
-              ),
-            )}
+                    {label}
+                  </span>
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
 
         <ul className="hidden lg:flex">
-          {callToAction.map(({ label, url, newTab, variant }) => (
+          {callToAction.map(({ label, url, newTab }: LinkItem) => (
             <li key={label}>
               <Button
                 asChild

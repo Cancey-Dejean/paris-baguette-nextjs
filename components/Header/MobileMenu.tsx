@@ -1,18 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  DialogTitle,
-} from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import { twMerge } from "tailwind-merge";
+import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
+
 import { EpClose, SolarHamburgerMenuOutline } from "@/constants/svgIcons";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { LinkItem, Navigation } from "@/types/types";
 
 export default function MobileMenu({
   navigation,
@@ -20,7 +14,7 @@ export default function MobileMenu({
   mobileIsOpen,
   setMobileIsOpen,
 }: {
-  navigation: any;
+  navigation: Navigation;
   callToAction: any;
   mobileIsOpen: boolean;
   setMobileIsOpen: any;
@@ -42,23 +36,6 @@ export default function MobileMenu({
         <SolarHamburgerMenuOutline className="size-6 text-white" />
       </button>
 
-      {/*<button*/}
-      {/*  type="button"*/}
-      {/*  className={twMerge(*/}
-      {/*    "relative size-9",*/}
-      {/*    "[&_svg]:absolute [&_svg]:left-1/2 [&_svg]:top-1/2 [&_svg]:size-9 [&_svg]:translate-x-[-50%] [&_svg]:translate-y-[-50%] [&_svg]:text-primary",*/}
-      {/*    mobileIsOpen ? "z-40 [&_svg]:text-secondary" : "[&_svg]:text-white",*/}
-      {/*  )}*/}
-      {/*  onClick={handleMobileMenu}*/}
-      {/*>*/}
-      {/*  <SolarHamburgerMenuOutline*/}
-      {/*    className={mobileIsOpen ? "hidden opacity-0" : "block opacity-100"}*/}
-      {/*  />*/}
-      {/*  <EpClose*/}
-      {/*    className={mobileIsOpen ? "block opacity-100" : "hidden opacity-0"}*/}
-      {/*  />*/}
-      {/*</button>*/}
-
       <Dialog
         open={mobileIsOpen}
         onClose={setMobileIsOpen}
@@ -76,8 +53,8 @@ export default function MobileMenu({
                 transition
                 className="pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out data-[closed]:translate-x-full sm:duration-700"
               >
-                <div className="flex h-full flex-col overflow-y-scroll bg-primary py-7">
-                  <div className="flex items-center justify-between px-5 sm:justify-end sm:px-6">
+                <div className="flex h-full flex-col overflow-y-scroll bg-primary">
+                  <div className="flex items-center justify-between p-5 sm:justify-end sm:p-7">
                     <Link
                       href="/"
                       className="inline-block sm:hidden"
@@ -93,43 +70,33 @@ export default function MobileMenu({
 
                     <button
                       type="button"
-                      className="relative flex size-6 items-center justify-center"
+                      className="flex size-6 items-center justify-center"
                       onClick={handleMobileMenu}
                     >
                       <EpClose className="size-6 text-secondary" />
                     </button>
                   </div>
 
-                  <div className="flex grow flex-col justify-center px-5">
+                  <div className="flex grow flex-col items-center justify-center p-5 lg:p-7">
                     <nav>
-                      <ul className="flex flex-col">
-                        {navigation.map(
-                          ({
-                            label,
-                            url,
-                            newTab,
-                          }: {
-                            label: string;
-                            url: string;
-                            newTab?: boolean;
-                          }) => (
-                            <li key={label}>
-                              <Link
-                                href={url}
-                                target={newTab ? "_blank" : "_self"}
-                                rel={newTab ? "noopener noreferrer" : undefined}
-                                className="py-5 font-pbBold text-xl text-white"
-                              >
-                                {label}
-                              </Link>
-                            </li>
-                          ),
-                        )}
+                      <ul className="flex flex-col items-center">
+                        {navigation.map(({ label, url, newTab }: LinkItem) => (
+                          <li key={label}>
+                            <Link
+                              href={url}
+                              target={newTab ? "_blank" : "_self"}
+                              rel={newTab ? "noopener noreferrer" : undefined}
+                              className="py-5 text-center font-pbBold text-xl text-white"
+                            >
+                              {label}
+                            </Link>
+                          </li>
+                        ))}
                       </ul>
                     </nav>
 
                     <ul className="my-5 flex flex-col">
-                      {callToAction.map(({ label, url, newTab, variant }) => (
+                      {callToAction.map(({ label, url, newTab }: LinkItem) => (
                         <li key={label}>
                           <Button
                             asChild
