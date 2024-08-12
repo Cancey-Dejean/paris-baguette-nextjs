@@ -16,7 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.className} ${pbSignature.variable} `}>
+      <body
+        className={`${roboto.className} ${pbSignature.variable} animate-fade-in`}
+      >
         <div className="grid min-h-[100dvh] grid-rows-[auto_1fr_auto]">
           <Header />
           <main role="main">{children}</main>

@@ -13,6 +13,13 @@ const config = {
     fontFamily: {
       pbBold: "var(--font-pbsignature-bold)",
     },
+    color: {
+      primary: "var(--color-primary)",
+      secondary: "var(--color-secondary)",
+      tertiary: "var(--color-tertiary)",
+      white: "var(--color-white)",
+      transparent: "transparent",
+    },
     container: {
       center: true,
       padding: "2rem",
@@ -28,11 +35,11 @@ const config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "var(--color-primary)",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
+          DEFAULT: "var(--color-secondary)",
           foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
@@ -62,6 +69,10 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        "fade-in": {
+          from: { opacity: "0" },
+          to: { opacity: "100" },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -72,6 +83,7 @@ const config = {
         },
       },
       animation: {
+        "fade-in": "fade-in .3s ease-in .15s backwards",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
