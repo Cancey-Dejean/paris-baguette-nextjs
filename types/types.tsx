@@ -1,5 +1,3 @@
-import { ButtonProps } from "@/components/ui/button";
-
 export type LinkItem = {
   label: string;
   url: string;
@@ -7,3 +5,27 @@ export type LinkItem = {
 };
 
 export type Navigation = LinkItem[];
+
+export type ProductCardIcons = {
+  [key: string]: string;
+};
+
+export type ProductCardLink = {
+  label: string;
+  url: string;
+  icon: "cart" | "circleArrow";
+};
+
+export type CardProduct = {
+  image: string;
+  imageAlt?: string;
+  title: string;
+  description: string;
+  links?: [
+    {
+      label: string;
+      url: string;
+      icon: "cart" | "circleArrow";
+    },
+  ];
+};

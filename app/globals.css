@@ -5,6 +5,7 @@
 @layer base {
     :root {
         --font-pbsignature-bold: "PB Signature Bold Display", sans-serif;
+        --font-pbspecial-elite: "PB Special Elite", sans-serif;
 
         --color-primary: #171b60;
         --color-secondary: #ffc600;
@@ -73,15 +74,28 @@
         @apply border-border;
     }
 
-    /* body {
-      @apply ;
-    } */
+    html {
+        @apply scroll-smooth;
+    }
+
+    body {
+        @apply font-roboto font-light;
+    }
+
     a {
         @apply inline-block;
     }
 
     h1 {
         @apply font-pbBold;
+    }
+
+    section {
+        @apply py-20  px-5 xl:px-7;
+    }
+
+    p {
+        @apply text-lg leading-[1.3];
     }
 }
 

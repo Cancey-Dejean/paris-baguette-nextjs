@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { pbSignature, roboto } from "@/utils/fonts";
+import { pbSignature, pbSpecialElite, roboto } from "@/utils/fonts";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import React from "react";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.className} ${pbSignature.variable} animate-fade-in`}
+        className={`${roboto.className} ${pbSignature.variable} ${pbSpecialElite.variable} animate-fade-in`}
       >
         <div className="grid min-h-[100dvh] grid-rows-[auto_1fr_auto]">
           <Header />

@@ -12,6 +12,8 @@ const config = {
   theme: {
     fontFamily: {
       pbBold: "var(--font-pbsignature-bold)",
+      pbSpecial: "var(--font-pbspecial-elite)",
+      roboto: "var(--font-roboto)",
     },
     color: {
       primary: "var(--color-primary)",
@@ -86,6 +88,10 @@ const config = {
         "fade-in": "fade-in .3s ease-in .15s backwards",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      backgroundImage: {
+        "gradient-hero":
+          "linear-gradient(to bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%)",
       },
     },
   },
