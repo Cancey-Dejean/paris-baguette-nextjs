@@ -65,8 +65,7 @@ export default function Header() {
       <header
         className={twMerge(
           "fixed top-0 z-50 mx-auto flex w-full items-center justify-between gap-4 bg-primary p-5 text-white transition-all duration-300 ease-in-out lg:p-7",
-          !isScrolled ? "bg-transparent" : "bg-primary",
-          window.scrollY > 0 ? "bg-primary" : "",
+          isScrolled ? "bg-primary shadow-2xl" : "bg-transparent",
           mobileIsOpen ? "opacity-0" : "opacity-100",
         )}
       >
@@ -116,7 +115,10 @@ export default function Header() {
                 variant="outline-light"
                 size="sm"
                 className={twMerge(
-                  isScrolled ? "border-secondary bg-secondary" : "",
+                  "hover:border-primary hover:bg-white hover:text-primary",
+                  isScrolled
+                    ? "border-secondary bg-secondary text-primary"
+                    : "hover:border-secondary hover:bg-secondary hover:text-primary",
                 )}
               >
                 <Link

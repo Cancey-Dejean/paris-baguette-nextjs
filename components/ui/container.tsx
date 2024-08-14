@@ -4,6 +4,7 @@ import React from "react";
 const containerSizes = {
   base: "max-w-[1314px]",
   contained: "max-w-[1170px]",
+  compact: "max-w-[900px]",
 };
 
 export default function Container({
@@ -11,7 +12,7 @@ export default function Container({
   children,
   className,
 }: {
-  size?: "base" | "contained";
+  size?: "base" | "contained" | "compact";
   className?: string;
   children: React.ReactNode;
 } & React.HTMLAttributes<HTMLDivElement>) {
