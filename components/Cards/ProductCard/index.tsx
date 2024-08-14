@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
-import { CardProduct, ProductCardIcons } from "@/types/types";
+import { CardProduct, ProductCardIcons } from "@/types";
 
 const cardIcons: ProductCardIcons = {
   cart: "/images/icon-checkout.svg",

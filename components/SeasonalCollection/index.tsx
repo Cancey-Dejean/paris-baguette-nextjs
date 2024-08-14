@@ -1,6 +1,6 @@
 import Container from "@/components/ui/container";
 import ProductCard from "@/components/Cards/ProductCard";
-import { ProductCardLink } from "@/types/types";
+import { ProductCardLink } from "@/types";
 
 const cards = [
   {
@@ -66,8 +66,8 @@ export default function SeasonalCollection() {
   return (
     <section>
       <Container size="contained" className="flex gap-9">
-        {cards.map(({ image, imageAlt, title, description, links }) => (
-          <div className="grow">
+        {cards.map(({ image, imageAlt, title, description, links }, index) => (
+          <div className="grow" key={index}>
             <ProductCard
               image={image}
               imageAlt={imageAlt}

@@ -6,7 +6,7 @@ import { EpClose, SolarHamburgerMenuOutline } from "@/constants/svgIcons";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { LinkItem, Navigation } from "@/types/types";
+import { LinkItem, Navigation } from "@/types";
 
 export default function MobileMenu({
   navigation,

@@ -8,7 +8,7 @@ import useScrolled from "@/hooks/useScrolled";
 import { twMerge } from "tailwind-merge";
 import useCloseMobileMenuOnResize from "@/hooks/useCloseMobileMenuOnResize";
 import MobileMenu from "@/components/Header/MobileMenu";
-import { LinkItem, Navigation } from "@/types/types";
+import { LinkItem, Navigation } from "@/types";
 
 const navigation: Navigation = [
   {
@@ -65,7 +65,7 @@ export default function Header() {
       <header
         className={twMerge(
           "fixed top-0 z-50 mx-auto flex w-full items-center justify-between gap-4 bg-primary p-5 text-white transition-all duration-300 ease-in-out lg:p-7",
-          !isScrolled ? "bg-transparent" : "",
+          !isScrolled ? "bg-transparent" : "bg-primary",
           window.scrollY > 0 ? "bg-primary" : "",
           mobileIsOpen ? "opacity-0" : "opacity-100",
         )}
@@ -140,11 +140,6 @@ export default function Header() {
           />
         </div>
       </header>
-
-      {/*<MobileMenu*/}
-      {/*  mobileIsOpen={mobileIsOpen}*/}
-      {/*  setMobileIsOpen={{ setMobileIsOpen }}*/}
-      {/*/>*/}
     </>
   );
 }

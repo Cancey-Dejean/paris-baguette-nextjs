@@ -1,8 +1,12 @@
+import { ButtonProps } from "@/components/ui/button";
+
 export type LinkItem = {
   label: string;
   url: string;
   newTab?: boolean;
 };
+
+export type ButtonItem = ButtonProps & LinkItem;
 
 export type Navigation = LinkItem[];
 

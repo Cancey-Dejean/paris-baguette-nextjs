@@ -1,7 +1,7 @@
 import Container from "@/components/ui/container";
 import Image from "next/image";
 import Link from "next/link";
-import { AppStoreLinks } from "@/types/types";
+import { AppStoreLinks } from "@/types";
 
 const appStoreLinks: AppStoreLinks = [
   {
@@ -55,23 +55,25 @@ export default function Rewards() {
           </p>
 
           <div className="flex items-center gap-5">
-            {appStoreLinks.map(({ image, imageAlt, url, width, height }) => (
-              <Link
-                key={image}
-                href={url}
-                target="_blank"
-                className="group bg-[#666] transition-all duration-300 ease-in-out hover:bg-black"
-                rel="nofollow noreferrer"
-              >
-                <Image
-                  src={image}
-                  alt={imageAlt || "No alt set"}
-                  width={width || 132}
-                  height={height || 40}
-                  className="-in-out mix-blend-lighten grayscale transition-all duration-300 group-hover:filter-none"
-                />
-              </Link>
-            ))}
+            {appStoreLinks.map(
+              ({ image, imageAlt, url, width, height }, index) => (
+                <Link
+                  key={index}
+                  href={url}
+                  target="_blank"
+                  className="group bg-[#666] transition-all duration-300 ease-in-out hover:bg-black"
+                  rel="nofollow noreferrer"
+                >
+                  <Image
+                    src={image}
+                    alt={imageAlt || "No alt set"}
+                    width={width || 132}
+                    height={height || 40}
+                    className="-in-out mix-blend-lighten grayscale transition-all duration-300 group-hover:filter-none"
+                  />
+                </Link>
+              ),
+            )}
           </div>
 
           <p className="mt-5 inline-block text-sm font-light italic">

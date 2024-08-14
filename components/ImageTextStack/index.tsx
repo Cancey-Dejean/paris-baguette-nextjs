@@ -1,11 +1,12 @@
-import Container from "@/components/ui/container";
 import Image from "next/image";
+import Container from "@/components/ui/container";
+import ImageTextRow from "@/components/ImageTextRow";
 
 export default function ImageTextStack() {
   return (
     <section>
-      <Container className="flex items-center gap-5">
-        <div className="group relative h-[531px] w-[585px] overflow-hidden rounded-[30px]">
+      <Container size="contained" className="flex items-center gap-16">
+        <div className="group relative size-[585px] shrink-0 overflow-hidden rounded-[30px]">
           <Image
             src="/images/food-spread.jpg"
             alt="Food Spread"
@@ -14,7 +15,11 @@ export default function ImageTextStack() {
           />
         </div>
 
-        <div>Column Items</div>
+        <div className="grow">
+          <ImageTextRow />
+          <ImageTextRow />
+          <ImageTextRow />
+        </div>
       </Container>
     </section>
   );
