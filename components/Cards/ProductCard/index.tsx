@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
-import { ProductCardIcons, ProductCardLink } from "@/types/types";
+import { CardProduct, ProductCardIcons } from "@/types/types";
 
 const cardIcons: ProductCardIcons = {
   cart: "/images/icon-checkout.svg",
@@ -14,13 +14,7 @@ export default function ProductCard({
   title = "Product Title",
   description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   links, // Default to CardLinks if not provided
-}: {
-  image: string;
-  imageAlt?: string;
-  title: string;
-  description: string;
-  links?: ProductCardLink[];
-}) {
+}: CardProduct) {
   return (
     <div
       className="flex h-full flex-col overflow-hidden rounded-t-[25px] bg-[#faf5f1]"
@@ -28,11 +22,11 @@ export default function ProductCard({
         backgroundImage: "url('/images/bg-beige-texture.jpg')",
       }}
     >
-      <div className="relative h-[290px] w-full min-w-[366px]">
+      <div className="group relative h-[290px] w-full min-w-[366px] overflow-hidden">
         <Image
           src={image}
           alt={imageAlt}
-          className="object-cover"
+          className="object-cover transition-all duration-300 ease-in-out group-hover:scale-105"
           sizes="(max-width: 768px) 100vw,  33vw"
           fill
         />
@@ -48,7 +42,7 @@ export default function ProductCard({
 
       {links && (
         <div className={twMerge("mt-auto flex bg-[rgba(0,0,0,0.05)]")}>
-          {links.map(({ url, label, icon }: ProductCardLink, index) => (
+          {links.map(({ url, label, icon }, index) => (
             <div
               key={index}
               className={twMerge(

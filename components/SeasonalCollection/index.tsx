@@ -1,10 +1,11 @@
 import Container from "@/components/ui/container";
 import ProductCard from "@/components/Cards/ProductCard";
-import { CardProduct } from "@/types/types";
+import { ProductCardLink } from "@/types/types";
 
 const cards = [
   {
-    image: "https://dummyimage.com/1170x580 .png/171b60/dddddd",
+    image: "/images/lemon-citrus-cake.jpg",
+
     imageAlt: "Slices of Citrus",
     title: "Slices of Citrus",
     description: "Slice into summer with our Lemon Citrus Layer Cake!",
@@ -22,7 +23,7 @@ const cards = [
     ],
   },
   {
-    image: "https://dummyimage.com/1170x580 .png/171b60/dddddd",
+    image: "/images/lemon-supreme.jpg",
     imageAlt: "Supremely Summer",
     title: "Supremely Summer",
     description:
@@ -41,7 +42,7 @@ const cards = [
     ],
   },
   {
-    image: "https://dummyimage.com/1170x580.png/171b60/dddddd",
+    image: "/images/beverage-line-up.jpg",
     imageAlt: "Sips of Summer",
     title: "Sips of Summer",
     description:
@@ -61,36 +62,21 @@ const cards = [
   },
 ];
 
-export const CardLinks = [
-  {
-    href: "/cart",
-    label: "Order Now",
-    icon: "cart",
-  },
-  {
-    href: "/details",
-    label: "Details",
-    icon: "circleArrow",
-  },
-];
-
 export default function SeasonalCollection() {
   return (
     <section>
       <Container size="contained" className="flex gap-9">
-        {cards.map(
-          ({ image, imageAlt, title, description, links }: CardProduct) => (
-            <div className="grow">
-              <ProductCard
-                image={image}
-                imageAlt={imageAlt}
-                title={title}
-                description={description}
-                links={links}
-              />
-            </div>
-          ),
-        )}
+        {cards.map(({ image, imageAlt, title, description, links }) => (
+          <div className="grow">
+            <ProductCard
+              image={image}
+              imageAlt={imageAlt}
+              title={title}
+              description={description}
+              links={links as ProductCardLink[]}
+            />
+          </div>
+        ))}
       </Container>
     </section>
   );

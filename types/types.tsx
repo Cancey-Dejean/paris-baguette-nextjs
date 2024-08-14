@@ -21,11 +21,13 @@ export type CardProduct = {
   imageAlt?: string;
   title: string;
   description: string;
-  links?: [
-    {
-      label: string;
-      url: string;
-      icon: "cart" | "circleArrow";
-    },
-  ];
+  links?: ProductCardLink[];
 };
+
+export type AppStoreLinks = {
+  image: string;
+  imageAlt?: string;
+  width?: number;
+  height?: number;
+  url: string;
+}[];
