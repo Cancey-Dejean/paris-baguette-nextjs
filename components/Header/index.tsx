@@ -9,29 +9,7 @@ import { twMerge } from "tailwind-merge";
 import useCloseMobileMenuOnResize from "@/hooks/useCloseMobileMenuOnResize";
 import MobileMenu from "@/components/Header/MobileMenu";
 import { LinkItem, Navigation } from "@/types";
-
-const navigation: Navigation = [
-  {
-    label: "Menu",
-    url: "/",
-    newTab: false,
-  },
-  {
-    label: "Locations",
-    url: "/",
-    newTab: false,
-  },
-  {
-    label: "Rewards",
-    url: "/",
-    newTab: false,
-  },
-  {
-    label: "Catering",
-    url: "/",
-    newTab: false,
-  },
-];
+import { cn } from "@/lib/utils";
 
 const callToAction = [
   {
@@ -42,7 +20,17 @@ const callToAction = [
   },
 ];
 
-export default function Header() {
+export default function Header({
+  className,
+  logoSrc,
+  navigation,
+  logoAlt,
+}: {
+  logoSrc?: string;
+  logoAlt?: string;
+  className?: string;
+  navigation: Navigation;
+}) {
   const [mobileIsOpen, setMobileIsOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
 
@@ -63,10 +51,11 @@ export default function Header() {
   return (
     <>
       <header
-        className={twMerge(
+        className={cn(
           "fixed top-0 z-50 mx-auto flex w-full items-center justify-between gap-4 bg-primary p-5 text-white transition-all duration-300 ease-in-out lg:p-7",
           isScrolled ? "bg-primary shadow-2xl" : "bg-transparent",
           mobileIsOpen ? "opacity-0" : "opacity-100",
+          className,
         )}
       >
         <Link
@@ -74,7 +63,11 @@ export default function Header() {
           className="relative block h-[17px] w-[250px] lg:h-[20px] lg:w-[300px]"
         >
           <span className="sr-only">Link to homepage</span>
-          <Image src="/images/paris-logo.svg" alt="Logo" fill />
+          <Image
+            src={logoSrc || "/images/paris-logo.svg"}
+            alt={logoAlt || "Logo"}
+            fill
+          />
         </Link>
 
         <nav className="hidden grow justify-end overflow-y-hidden lg:flex">

@@ -14,9 +14,7 @@ export type ProductCardIcons = {
   [key: string]: string;
 };
 
-export type ProductCardLink = {
-  label: string;
-  url: string;
+export type ProductCardLink = LinkItem & {
   icon: "cart" | "circleArrow";
 };
 
@@ -25,7 +23,7 @@ export type CardProduct = {
   imageAlt?: string;
   title: string;
   description: string;
-  links?: ProductCardLink[];
+  cardLinks?: ProductCardLink[];
 };
 
 export type AppStoreLinks = {

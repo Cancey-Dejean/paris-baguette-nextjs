@@ -9,6 +9,8 @@ import {
   RiFacebookFill,
   RiLinkedinFill,
 } from "@/constants/svgIcons";
+import { appStoreLinks } from "@/lib/dummyData";
+import AppStore from "@/components/AppStore";
 
 const primaryMenu: LinkItem[] = [
   {
@@ -109,6 +111,24 @@ const socialLinks = [
   },
 ];
 
+const footerLinks: LinkItem[] = [
+  {
+    label: "Sitemap",
+    url: "/",
+    newTab: false,
+  },
+  {
+    label: "Privacy Policy",
+    url: "/",
+    newTab: false,
+  },
+  {
+    label: "Terms Of Use",
+    url: "/",
+    newTab: false,
+  },
+];
+
 export default function Footer() {
   return (
     <footer className="bg-primary-500 text-white">
@@ -130,7 +150,7 @@ export default function Footer() {
                   href={url}
                   target={newTab ? "_blank" : "_self"}
                   rel={newTab ? "noopener noreferrer" : undefined}
-                  className="font-pbBold transition-all duration-300 ease-in-out hover:text-secondary"
+                  className="font-pbBold text-xl transition-all duration-300 ease-in-out hover:text-secondary"
                 >
                   {label}
                 </Link>
@@ -155,6 +175,10 @@ export default function Footer() {
         </div>
 
         <div>
+          <h3 className="font-pbSpecial mb-5 text-2xl font-semibold uppercase">
+            Connect With Us
+          </h3>
+
           <ul className="flex items-center gap-3">
             {socialLinks.map(({ icon, url }, index) => {
               const IconComponent = socialIcons[icon as SocialIconKey];
@@ -177,8 +201,22 @@ export default function Footer() {
       </Container>
 
       <Container className="flex items-center justify-between gap-5 border-t border-dotted py-9">
-        <div>App store Icons</div>
-        <div className="font-pbBold">Site Links</div>
+        <AppStore />
+
+        <ul className="flex font-pbBold">
+          {footerLinks.map(({ label, url, newTab }) => (
+            <li key={label}>
+              <Link
+                href={url}
+                target={newTab ? "_blank" : "_self"}
+                rel={newTab ? "noopener noreferrer" : undefined}
+                className="p-5 font-pbBold transition-all duration-300 ease-in-out hover:text-secondary"
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </Container>
     </footer>
   );

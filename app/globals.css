@@ -104,3 +104,14 @@
 .hide-overflow {
     @apply overflow-hidden;
 }
+
+/* Storybook Styles ONLY: DO NOT DELETE */
+.sbdocs-content {
+    @apply mx-auto !max-w-[1920px];
+}
+
+#storybook-root .font-pbBold {
+    font-family: var(--font-pbsignature-bold);
+}
+
+/* End Storybook Styles ONLY: DO NOT DELETE */

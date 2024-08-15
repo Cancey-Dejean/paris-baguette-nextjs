@@ -2,23 +2,8 @@ import Container from "@/components/ui/container";
 import Image from "next/image";
 import Link from "next/link";
 import { AppStoreLinks } from "@/types";
-
-const appStoreLinks: AppStoreLinks = [
-  {
-    image: "/images/apple-app-store.png",
-    imageAlt: "Download on the Apple App Store",
-    width: 120,
-    height: 40,
-    url: "https://apps.apple.com/us/app/pb-rewards/id6442200078",
-  },
-  {
-    image: "/images/google-play-store.png",
-    imageAlt: "Download on Google Play",
-    width: 120,
-    height: 40,
-    url: "https://apps.apple.com/us/app/pb-rewards/id6442200078",
-  },
-];
+import { appStoreLinks } from "@/lib/dummyData";
+import AppStore from "@/components/AppStore";
 
 export default function Rewards() {
   return (
@@ -54,27 +39,7 @@ export default function Rewards() {
             with your first purchase when you sign up!
           </p>
 
-          <div className="flex items-center gap-5">
-            {appStoreLinks.map(
-              ({ image, imageAlt, url, width, height }, index) => (
-                <Link
-                  key={index}
-                  href={url}
-                  target="_blank"
-                  className="group bg-[#666] transition-all duration-300 ease-in-out hover:bg-black"
-                  rel="nofollow noreferrer"
-                >
-                  <Image
-                    src={image}
-                    alt={imageAlt || "No alt set"}
-                    width={width || 132}
-                    height={height || 40}
-                    className="-in-out mix-blend-lighten grayscale transition-all duration-300 group-hover:filter-none"
-                  />
-                </Link>
-              ),
-            )}
-          </div>
+          <AppStore />
 
           <p className="mt-5 inline-block text-sm font-light italic">
             *New PB Rewards members only
