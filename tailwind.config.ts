@@ -24,6 +24,7 @@ const config = {
       white: "var(--color-white)",
       primary: {
         DEFAULT: "var(--color-primary)",
+        500: "var(--color-primary-500)",
       },
       secondary: {
         DEFAULT: "var(--color-secondary)",
