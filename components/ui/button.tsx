@@ -14,15 +14,14 @@ const buttonVariants = cva(
         secondary:
           "bg-secondary text-blue border-secondary hover:bg-primary hover:text-white hover:border-primary",
         tertiary:
-          "bg-tertiary text-primary  hover:bg-primary hover:text-white hover:border-primary",
-        "outline-light": "border-white text-white hover:bg-secondary",
-        outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "bg-tertiary text-primary hover:bg-primary hover:text-white hover:border-primary",
+        "outline-light":
+          "border-white text-white hover:bg-secondary hover:border-secondary hover:text-primary",
+        outline: "border-primary hover:bg-primary hover:text-white",
       },
       size: {
         default: "px-7 py-2.5 text-xl",
         sm: "px-5 py-1.5 text-sm",
-        lg: "",
       },
     },
     defaultVariants: {
