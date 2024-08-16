@@ -6,7 +6,7 @@ const meta = {
   component: Hero,
   tags: ["autodocs"],
   parameters: {
-    layout: "fullscreen ",
+    layout: "fullscreen",
   },
 } satisfies Meta<typeof Hero>;
 

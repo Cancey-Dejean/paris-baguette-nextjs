@@ -24,7 +24,7 @@ const meta = {
     },
     size: {
       control: { type: "select" },
-      options: ["default", "sm", "lg"],
+      options: ["default", "sm"],
     },
     asChild: {
       control: false,
@@ -34,13 +34,6 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-// export const Default: Story = {
-//   render: (args) => {
-//     return <Button variant="default">Button</Button>;
-//   },
-// };
 
 export const DefaultSmall: Story = {
   args: {
