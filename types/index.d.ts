@@ -26,6 +26,14 @@ export type CardProduct = {
   cardLinks?: ProductCardLink[];
 };
 
+export type ImageTextRowItem = {
+  title: string;
+  image: string;
+  imageAlt?: string;
+  description: string;
+  buttons?: ButtonItem[];
+};
+
 export type AppStoreLinks = {
   image: string;
   imageAlt?: string;

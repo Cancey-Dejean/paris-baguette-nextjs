@@ -1,6 +1,8 @@
 import {
   AppStoreLinks,
   ButtonItem,
+  CardProduct,
+  ImageTextRowItem,
   Navigation,
   ProductCardLink,
 } from "@/types";
@@ -43,6 +45,23 @@ export const cardLinks: ProductCardLink[] = [
   },
 ];
 
+export const buttons: ButtonItem[] = [
+  {
+    label: "Order Now",
+    url: "/#cart",
+    newTab: true,
+    variant: "secondary",
+    size: "sm",
+  },
+  {
+    label: "Details",
+    url: "/#details",
+    newTab: false,
+    variant: "tertiary",
+    size: "sm",
+  },
+];
+
 export const callToAction = [
   {
     label: "Order Now",
@@ -69,7 +88,7 @@ export const appStoreLinks: AppStoreLinks = [
   },
 ];
 
-export const cardItemsLo = [
+export const cardItemsLo: CardProduct[] = [
   {
     image: "https://dummyimage.com/1170x580.png/171b60/dddddd",
     imageAlt: "Product 1 Alt",
@@ -126,7 +145,7 @@ export const cardItemsLo = [
   },
 ];
 
-export const cardItemsHi = [
+export const cardItemsHi: CardProduct[] = [
   {
     image: "/images/lemon-citrus-cake.jpg",
 
@@ -181,6 +200,134 @@ export const cardItemsHi = [
         label: "Details",
         url: "/details",
         icon: "circleArrow",
+      },
+    ],
+  },
+];
+
+export const rowItemsLo: ImageTextRowItem[] = [
+  {
+    image: "https://dummyimage.com/100x100.png/171b60/dddddd",
+    imageAlt: "icon",
+    title: "Title",
+    description: "This is a description",
+    buttons: [
+      {
+        label: "Order Now",
+        url: "/#order",
+        variant: "secondary",
+        newTab: true,
+      },
+      {
+        label: "Details",
+        url: "/#details",
+        variant: "tertiary",
+        newTab: false,
+      },
+    ],
+  },
+  {
+    image: "https://dummyimage.com/100x100.png/171b60/dddddd",
+    imageAlt: "icon",
+    title: "Title",
+    description: "This is a description",
+    buttons: [
+      {
+        label: "Order Now",
+        url: "/#order",
+        variant: "secondary",
+        newTab: true,
+      },
+      {
+        label: "Details",
+        url: "/#details",
+        variant: "tertiary",
+        newTab: false,
+      },
+    ],
+  },
+  {
+    image: "https://dummyimage.com/100x100.png/171b60/dddddd",
+    imageAlt: "icon",
+    title: "Title",
+    description: "This is a description",
+    buttons: [
+      {
+        label: "Order Now",
+        url: "/#order",
+        variant: "secondary",
+        newTab: true,
+      },
+      {
+        label: "Details",
+        url: "/#details",
+        variant: "tertiary",
+        newTab: false,
+      },
+    ],
+  },
+];
+
+export const rowItemsHi: ImageTextRowItem[] = [
+  {
+    image: "/images/icon-bakery.svg",
+    imageAlt: "icon",
+    title: "Bakery",
+    description:
+      "A delicious variety of sweet and savory pastries, breads, and donuts, freshly baked every day.",
+    buttons: [
+      {
+        label: "Order Now",
+        url: "/#cart",
+        variant: "secondary",
+        newTab: true,
+      },
+      {
+        label: "Details",
+        url: "/#details",
+        variant: "tertiary",
+        newTab: false,
+      },
+    ],
+  },
+  {
+    image: "/images/icon-cake.svg",
+    imageAlt: "icon",
+    title: "Cakes",
+    description:
+      "Made by our master cakers and decorated to perfection, down to the last detail.",
+    buttons: [
+      {
+        label: "Order Now",
+        url: "/#cart",
+        variant: "secondary",
+        newTab: true,
+      },
+      {
+        label: "Details",
+        url: "/#details",
+        variant: "tertiary",
+        newTab: false,
+      },
+    ],
+  },
+  {
+    image: "/images/icon-catering.svg",
+    imageAlt: "Catering Icon",
+    title: "Catering",
+    description: "Power your gathering with Paris Baguette.",
+    buttons: [
+      {
+        label: "Order Now",
+        url: "/#cart",
+        variant: "secondary",
+        newTab: true,
+      },
+      {
+        label: "Details",
+        url: "/#details",
+        variant: "tertiary",
+        newTab: false,
       },
     ],
   },

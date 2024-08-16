@@ -5,11 +5,17 @@ import { Button } from "@/components/ui/button";
 
 export default function ImageTextRow({
   image = "https://dummyimage.com/100x100.png/171b60/dddddd",
-  imageAlt,
+  imageAlt = "Icon image",
   title,
   description,
   buttons,
-}: any) {
+}: {
+  title: string;
+  image: string;
+  imageAlt?: string;
+  description: string;
+  buttons?: ButtonItem[];
+}) {
   return (
     <div className="[&>hr]:last:hidden">
       <div className="flex items-center gap-8">
@@ -18,7 +24,7 @@ export default function ImageTextRow({
           alt={imageAlt}
           width={100}
           height={100}
-          className="mb-5"
+          className="mb-5 shrink-0"
         />
 
         <div className="grow">
@@ -30,7 +36,7 @@ export default function ImageTextRow({
 
           {buttons && buttons.length > 0 && (
             <div className="mt-5 flex items-center gap-5">
-              {buttons.map(({ label, url, newTab, variant }: ButtonItem) => (
+              {buttons.map(({ label, url, newTab, variant }) => (
                 <Button asChild variant={variant} size="sm" key={label}>
                   <Link
                     href={url}
