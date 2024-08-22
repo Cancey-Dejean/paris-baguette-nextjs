@@ -102,6 +102,34 @@
   }
 }
 
+@layer components {
+  /* Embla Styles */
+  .embla {
+    overflow: hidden;
+  }
+  .embla__container {
+    display: flex;
+  }
+  .embla__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+  }
+
+  .embla__button:disabled {
+    cursor: not-allowed;
+  }
+
+  .five-slide {
+    --slide-spacing: 2rem;
+    --slide-size: auto;
+
+    & .embla__slide {
+      flex: 0 0 var(--slide-size);
+      min-width: 0;
+    }
+  }
+}
+
 .hide-overflow {
   @apply overflow-hidden;
 }
