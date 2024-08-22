@@ -129,7 +129,7 @@ const footerLinks: LinkItem[] = [
   },
 ];
 
-export default function Footer() {
+export default function Footer({ socialHeading }: { socialHeading?: string }) {
   return (
     <footer className="bg-primary-500 text-white">
       <Container className="mb-10 grid grid-cols-3 py-[100px]">
@@ -149,7 +149,7 @@ export default function Footer() {
                 <Link
                   href={url}
                   target={newTab ? "_blank" : "_self"}
-                  rel={newTab ? "noopener noreferrer" : undefined}
+                  rel={newTab ? "noopener noreferrer" : "noreferrer"}
                   className="font-pbBold text-xl transition-all duration-300 ease-in-out hover:text-secondary"
                 >
                   {label}
@@ -164,7 +164,7 @@ export default function Footer() {
                 <Link
                   href={url}
                   target={newTab ? "_blank" : "_self"}
-                  rel={newTab ? "noopener noreferrer" : undefined}
+                  rel={newTab ? "noopener noreferrer" : "noreferrer"}
                   className="font-pbBold transition-all duration-300 ease-in-out hover:text-secondary"
                 >
                   {label}
@@ -175,8 +175,8 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-pbSpecial mb-5 text-2xl font-semibold uppercase">
-            Connect With Us
+          <h3 className="mb-5 font-pbSpecial text-2xl font-semibold uppercase">
+            {socialHeading}
           </h3>
 
           <ul className="flex items-center gap-3">
@@ -209,7 +209,7 @@ export default function Footer() {
               <Link
                 href={url}
                 target={newTab ? "_blank" : "_self"}
-                rel={newTab ? "noopener noreferrer" : undefined}
+                rel={newTab ? "noopener noreferrer" : "noreferrer"}
                 className="p-5 font-pbBold transition-all duration-300 ease-in-out hover:text-secondary"
               >
                 {label}

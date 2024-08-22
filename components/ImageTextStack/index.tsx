@@ -25,18 +25,22 @@ export default function ImageTextStack({
           />
         </div>
 
-        <div className="grow">
-          {rowItems.map(({ image, imageAlt, title, description, buttons }) => (
-            <ImageTextRow
-              key={title}
-              image={image}
-              imageAlt={imageAlt}
-              title={title}
-              description={description}
-              buttons={buttons}
-            />
-          ))}
-        </div>
+        {rowItems && (
+          <div className="grow">
+            {rowItems.map(
+              ({ image, imageAlt, title, description, buttons }) => (
+                <ImageTextRow
+                  key={title}
+                  image={image}
+                  imageAlt={imageAlt}
+                  title={title}
+                  description={description}
+                  buttons={buttons}
+                />
+              ),
+            )}
+          </div>
+        )}
       </Container>
     </section>
   );

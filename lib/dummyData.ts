@@ -45,6 +45,16 @@ export const cardLinks: ProductCardLink[] = [
   },
 ];
 
+export const heroButtons = [
+  {
+    label: "Get started for free",
+    url: "/#get-started",
+    newTab: true,
+    variant: "default",
+    size: "default",
+  },
+];
+
 export const buttons: ButtonItem[] = [
   {
     label: "Order Now",

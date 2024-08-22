@@ -70,35 +70,37 @@ export default function Header({
           />
         </Link>
 
-        <nav className="hidden grow justify-end overflow-y-hidden lg:flex">
-          <ul
-            className={twMerge(
-              "flex items-center transition-all duration-300 ease-in-out",
-              hidden ? "translate-y-full" : "translate-y-0",
-            )}
-          >
-            {navigation.map(({ label, url, newTab }: LinkItem) => (
-              <li key={label}>
-                <Link
-                  href={url}
-                  target={newTab ? "_blank" : "_self"}
-                  rel={newTab ? "noopener noreferrer" : undefined}
-                  className="group px-2.5 py-1.5 font-pbBold"
-                >
-                  <span
-                    className={twMerge(
-                      "relative",
-                      "after:bottom-0 after:mx-auto after:block after:h-0.5 after:w-0 after:translate-x-1/2 after:bg-secondary after:opacity-0 after:transition-all after:duration-200 after:ease-in-out after:content-['']",
-                      "group-hover:after:w-[calc(100%-15px)] group-hover:after:translate-x-0 group-hover:after:opacity-100",
-                    )}
+        {navigation && (
+          <nav className="hidden grow justify-end overflow-y-hidden lg:flex">
+            <ul
+              className={twMerge(
+                "flex items-center transition-all duration-300 ease-in-out",
+                hidden ? "translate-y-full" : "translate-y-0",
+              )}
+            >
+              {navigation.map(({ label, url, newTab }: LinkItem) => (
+                <li key={label}>
+                  <Link
+                    href={url}
+                    target={newTab ? "_blank" : "_self"}
+                    rel={newTab ? "noopener noreferrer" : "noreferrer"}
+                    className="group px-2.5 py-1.5 font-pbBold"
                   >
-                    {label}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+                    <span
+                      className={twMerge(
+                        "relative",
+                        "after:bottom-0 after:mx-auto after:block after:h-0.5 after:w-0 after:translate-x-1/2 after:bg-secondary after:opacity-0 after:transition-all after:duration-200 after:ease-in-out after:content-['']",
+                        "group-hover:after:w-[calc(100%-15px)] group-hover:after:translate-x-0 group-hover:after:opacity-100",
+                      )}
+                    >
+                      {label}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
 
         <ul className="hidden lg:flex">
           {callToAction.map(({ label, url, newTab }: LinkItem) => (
@@ -117,7 +119,7 @@ export default function Header({
                 <Link
                   href={url}
                   target={newTab ? "_blank" : "_self"}
-                  rel={newTab ? "noopener noreferrer" : undefined}
+                  rel={newTab ? "noopener noreferrer" : "noreferrer"}
                 >
                   {label}
                 </Link>

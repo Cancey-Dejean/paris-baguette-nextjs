@@ -28,7 +28,7 @@ export default function ImageTextRow({
         />
 
         <div className="grow">
-          <h3 className="font-pbSpecial mb-1.5 text-[32px] font-semibold leading-none text-primary">
+          <h3 className="mb-1.5 font-pbSpecial text-[32px] font-semibold leading-none text-primary">
             {title}
           </h3>
 
@@ -41,7 +41,7 @@ export default function ImageTextRow({
                   <Link
                     href={url}
                     target={newTab ? "_blank" : "_self"}
-                    rel={newTab ? "noopener noreferrer" : ""}
+                    rel={newTab ? "noopener noreferrer" : "noreferrer"}
                   >
                     {label || "Button"}
                   </Link>

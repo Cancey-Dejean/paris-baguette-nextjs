@@ -42,7 +42,7 @@ export default function ProductCard({
       </div>
 
       <div className="p-6 text-center text-primary">
-        <h3 className="font-pbSpecial mb-5 text-[28px] leading-none">
+        <h3 className="mb-5 font-pbSpecial text-[28px] leading-none">
           {title}
         </h3>
 
@@ -55,7 +55,7 @@ export default function ProductCard({
             <div
               key={index}
               className={twMerge(
-                "flex grow items-center justify-center gap-1.5 p-4 first:border-r-[1px] first:border-r-primary",
+                "relative flex grow items-center justify-center gap-1.5 p-4 first:border-r-[1px] first:border-r-primary",
               )}
             >
               <Image
@@ -67,7 +67,7 @@ export default function ProductCard({
               />
               <Link
                 href={url || "/"}
-                className="font-pbBold text-sm leading-none text-primary"
+                className="font-pbBold text-sm leading-none text-primary after:absolute after:inset-0"
               >
                 {label}
               </Link>

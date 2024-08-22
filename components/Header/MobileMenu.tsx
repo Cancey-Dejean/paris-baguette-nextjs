@@ -43,7 +43,7 @@ export default function MobileMenu({
       >
         <DialogBackdrop
           transition
-          className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0"
+          className="bg-gray-500 fixed inset-0 bg-opacity-75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0"
         />
 
         <div className="fixed inset-0 overflow-hidden">
@@ -78,22 +78,28 @@ export default function MobileMenu({
                   </div>
 
                   <div className="flex grow flex-col items-center justify-center p-5 lg:p-7">
-                    <nav>
-                      <ul className="flex flex-col items-center">
-                        {navigation.map(({ label, url, newTab }: LinkItem) => (
-                          <li key={label}>
-                            <Link
-                              href={url}
-                              target={newTab ? "_blank" : "_self"}
-                              rel={newTab ? "noopener noreferrer" : undefined}
-                              className="py-5 text-center font-pbBold text-xl text-white"
-                            >
-                              {label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </nav>
+                    {navigation && (
+                      <nav>
+                        <ul className="flex flex-col items-center">
+                          {navigation.map(
+                            ({ label, url, newTab }: LinkItem) => (
+                              <li key={label}>
+                                <Link
+                                  href={url}
+                                  target={newTab ? "_blank" : "_self"}
+                                  rel={
+                                    newTab ? "noopener noreferrer" : undefined
+                                  }
+                                  className="py-5 text-center font-pbBold text-xl text-white"
+                                >
+                                  {label}
+                                </Link>
+                              </li>
+                            ),
+                          )}
+                        </ul>
+                      </nav>
+                    )}
 
                     <ul className="my-5 flex flex-col">
                       {callToAction.map(({ label, url, newTab }: LinkItem) => (
@@ -107,7 +113,9 @@ export default function MobileMenu({
                             <Link
                               href={url}
                               target={newTab ? "_blank" : "_self"}
-                              rel={newTab ? "noopener noreferrer" : undefined}
+                              rel={
+                                newTab ? "noopener noreferrer" : "noreferrer"
+                              }
                             >
                               {label}
                             </Link>

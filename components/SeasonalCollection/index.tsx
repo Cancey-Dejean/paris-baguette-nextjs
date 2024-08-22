@@ -31,7 +31,7 @@ export default function SeasonalCollection({
           </Container>
         </section>
       ) : (
-        <p>Please add items to section</p>
+        <section className="text-center">Please add items to section</section>
       )}
     </>
   );

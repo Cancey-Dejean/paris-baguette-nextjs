@@ -1,34 +1,42 @@
 import Container from "@/components/ui/container";
+import { cn } from "@/lib/utils";
 
-export default function Video() {
+export default function Video({
+  headline,
+  subHeading,
+  className,
+  description,
+  videoUrl,
+  backgroundImage,
+}: {
+  headline: string;
+  subHeading: string;
+  className?: string;
+  description?: string;
+  videoUrl: string;
+  backgroundImage?: string;
+}) {
   return (
     <section
-      className="bg-cover"
+      className={cn("bg-cover", className)}
       style={{
-        backgroundImage: "url('/images/bg-beige-texture.jpg')",
+        backgroundImage: `url(${backgroundImage || "/images/bg-beige-texture.jpg"})`,
       }}
     >
       <Container size="compact" className="flex flex-col gap-12">
         <div className="text-center">
-          <h2 className="font-pbSpecial mb-12 text-[60px] leading-none text-primary">
-            Welcome to your neighborhood bakery café.
+          <h2 className="mb-12 font-pbSpecial text-[60px] leading-none text-primary">
+            {headline}
           </h2>
 
           <h3 className="font-pbSpecial text-3xl uppercase text-primary">
-            Where smiles are served daily
+            {subHeading}
           </h3>
 
-          <p className="mt-5 text-2xl">
-            Enjoy delicious pastries, warm breads, stunning cakes and expertly
-            brewed drinks while feeling right at home.
-          </p>
+          <p className="mt-5 line-clamp-2 text-2xl">{description}</p>
         </div>
 
-        <video
-          className="w-full rounded-[30px]"
-          src="/videos/PB-2024-Menuboard.mp4"
-          controls
-        />
+        <video className="w-full rounded-[30px]" src={videoUrl} controls />
       </Container>
     </section>
   );
