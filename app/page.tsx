@@ -12,6 +12,12 @@ export default function Home() {
         headline="Squeeze the day"
         subHeading="Dive into our delectable summer menu."
         mainImage="/images/hero.jpg"
+        buttons={[
+          {
+            label: "View the menu",
+            url: "/",
+          },
+        ]}
       />
 
       <SeasonalCollection cardItems={cardItemsHi} />

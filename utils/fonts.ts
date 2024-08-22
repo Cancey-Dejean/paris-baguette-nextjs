@@ -8,7 +8,18 @@ export const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-export const pbSignature = localFont({
+export const pbSignatureRegular = localFont({
+  src: [
+    {
+      path: "../public/fonts/pbsignature-regulartext.woff2",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-pbsignature-regular",
+});
+
+export const pbSignatureBold = localFont({
   src: [
     {
       path: "../public/fonts/pbsignature-bold.woff2",

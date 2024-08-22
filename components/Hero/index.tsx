@@ -45,14 +45,7 @@ export default function Hero({
 
         {buttons && (
           <div className="mt-10 flex justify-center">
-            <ButtonGroup
-              buttons={[
-                {
-                  label: "View the menu",
-                  url: "/",
-                },
-              ]}
-            />
+            <ButtonGroup buttons={buttons} />
           </div>
         )}
       </Container>

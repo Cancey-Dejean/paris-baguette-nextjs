@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    --font-pbsignature-regular: "PB Signature Regular Text", sans-serif;
     --font-pbsignature-bold: "PB Signature Bold Display", sans-serif;
     --font-pbspecial-elite: "PB Special Elite", sans-serif;
 
@@ -112,6 +113,10 @@
 
 #storybook-root .font-pbBold {
   font-family: var(--font-pbsignature-bold);
+}
+
+#storybook-root .font-pbRegular {
+  font-family: var(--font-pbsignature-regular);
 }
 
 /* End Storybook Styles ONLY: DO NOT DELETE */

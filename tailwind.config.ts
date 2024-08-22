@@ -10,6 +10,7 @@ const config = {
   prefix: "",
   theme: {
     fontFamily: {
+      pbRegular: "var(--font-pbsignature-regular)",
       pbBold: "var(--font-pbsignature-bold)",
       pbSpecial: "var(--font-pbspecial-elite)",
       roboto: "var(--font-roboto)",
@@ -79,7 +80,9 @@ const config = {
       },
       backgroundImage: {
         "gradient-hero":
-          "linear-gradient(to bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%)",
+          "linear-gradient(to bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%)",
+        "gradient-search":
+          "linear-gradient(to right, rgba(255,198,0,1) 0%,rgba(255,198,0,0) 100%)",
       },
     },
   },

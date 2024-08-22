@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
-import { pbSignature, pbSpecialElite, roboto } from "@/utils/fonts";
+import {
+  pbSignatureRegular,
+  pbSignatureBold,
+  pbSpecialElite,
+  roboto,
+} from "@/utils/fonts";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import React from "react";
 import { navigation } from "@/lib/dummyData";
 
 export const metadata: Metadata = {
@@ -19,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.className} ${pbSignature.variable} ${pbSpecialElite.variable} animate-fade-in`}
+        className={`${roboto.className} ${pbSignatureBold.variable} ${pbSignatureRegular.variable} ${pbSpecialElite.variable} animate-fade-in`}
       >
         <div className="grid min-h-[100dvh] grid-rows-[auto_1fr_auto]">
           <Header navigation={navigation} />
