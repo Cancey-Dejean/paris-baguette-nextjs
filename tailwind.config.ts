@@ -16,6 +16,7 @@ const config = {
       roboto: "var(--font-roboto)",
     },
     colors: {
+      transparent: "transparent",
       border: "hsl(var(--border))",
       input: "hsl(var(--input))",
       ring: "hsl(var(--ring))",
@@ -81,8 +82,10 @@ const config = {
       backgroundImage: {
         "gradient-hero":
           "linear-gradient(to bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%)",
-        "gradient-search":
-          "linear-gradient(90deg, var(--color-secondary) 0%, rgba(255,198,0,0) 100%)",
+        "gradient-search-to-left":
+          "linear-gradient(to left,  rgba(255, 192, 0,0) 0%,rgba(255, 192, 0,1) 100%)",
+        "gradient-search-to-right":
+          "linear-gradient(to right,  rgba(255, 192, 0,0) 0%,rgba(255, 192, 0,1) 100%)",
       },
     },
   },

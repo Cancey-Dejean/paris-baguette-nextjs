@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import SeasonalCollection from "./";
+import FeaturedCollection from ".";
 import { cardItemsHi, cardItemsLo, navigation } from "@/lib/dummyData";
 import { CardProduct } from "@/types";
 
 const meta = {
-  title: "Components/SeasonalCollection",
-  component: SeasonalCollection,
+  title: "Components/FeaturedCollection",
+  component: FeaturedCollection,
   tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
 
   argTypes: {},
-} satisfies Meta<typeof SeasonalCollection>;
+} satisfies Meta<typeof FeaturedCollection>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

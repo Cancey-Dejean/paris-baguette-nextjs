@@ -89,8 +89,13 @@
     @apply inline-block;
   }
 
-  h1 {
-    @apply font-pbBold;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-primary;
   }
 
   section {
@@ -119,7 +124,7 @@
     cursor: not-allowed;
   }
 
-  .five-slide {
+  .search-slide {
     --slide-spacing: 2rem;
     --slide-size: auto;
 

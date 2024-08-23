@@ -1,6 +1,7 @@
 import Container from "@/components/ui/container";
 import Image from "next/image";
 import AppStore from "@/components/AppStore";
+import HeaderLine from "../ui/headerLine";
 
 export default function Rewards({
   headline,
@@ -44,16 +45,16 @@ export default function Rewards({
               </div>
             )}
 
-            <h2 className="font-pbBold text-[70px]">{headline}</h2>
+            <h2 className="font-pbBold text-[70px] text-white">{headline}</h2>
           </div>
 
-          <h3 className="font-pbSpecial mb-4 text-5xl leading-none">
+          <h3 className="mb-4 font-pbSpecial text-5xl leading-none text-white">
             {subHeading}
           </h3>
 
-          <div className="mb-10 h-[9px] w-[210px] bg-secondary" />
+          <HeaderLine className="mb-10" />
 
-          <p className="font-roboto mb-7 text-2xl">{description}</p>
+          <p className="mb-7 font-roboto text-2xl">{description}</p>
 
           {showAppStore && <AppStore />}
 

@@ -14,23 +14,16 @@ export default function ProductCard({
   imageAlt = "Product Image",
   title = "Product Title",
   description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  backgroundImage = "",
   cardLinks,
 }: {
   image: string;
   imageAlt?: string;
-  backgroundImage?: string;
   title: string;
   description: string;
   cardLinks?: ProductCardLink[];
 }) {
   return (
-    <div
-      className="flex h-full flex-col overflow-hidden rounded-t-[25px] bg-[#faf5f1] bg-[length:1200px_auto] bg-no-repeat"
-      style={{
-        backgroundImage: `url(${backgroundImage || ""})`,
-      }}
-    >
+    <div className="flex h-full flex-col overflow-hidden rounded-t-[25px]">
       <div className="group relative h-[290px] w-full min-w-[366px] overflow-hidden">
         <Image
           src={image}
@@ -41,7 +34,7 @@ export default function ProductCard({
         />
       </div>
 
-      <div className="p-6 text-center text-primary">
+      <div className="grow bg-white p-6 text-center text-primary">
         <h3 className="mb-5 font-pbSpecial text-[28px] leading-none">
           {title}
         </h3>
@@ -50,7 +43,7 @@ export default function ProductCard({
       </div>
 
       {cardLinks && (
-        <div className={twMerge("mt-auto flex bg-[rgba(0,0,0,0.05)]")}>
+        <div className={twMerge("flex bg-[rgba(0,0,0,0.05)]")}>
           {cardLinks.map(({ url, label, icon }, index) => (
             <div
               key={index}
@@ -67,7 +60,7 @@ export default function ProductCard({
               />
               <Link
                 href={url || "/"}
-                className="font-pbBold text-sm leading-none text-primary after:absolute after:inset-0"
+                className="bg-cover bg-no-repeat font-pbBold text-sm leading-none text-primary after:absolute after:inset-0"
               >
                 {label}
               </Link>

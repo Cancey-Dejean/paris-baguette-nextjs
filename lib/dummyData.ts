@@ -153,6 +153,24 @@ export const cardItemsLo: CardProduct[] = [
       },
     ],
   },
+  {
+    image: "https://dummyimage.com/1170x580.png/171b60/dddddd",
+    imageAlt: "Product 4 Alt",
+    title: "Product 4",
+    description: "This is a brief description",
+    cardLinks: [
+      {
+        label: "Button 1",
+        url: "#",
+        icon: "cart",
+      },
+      {
+        label: "Button 2",
+        url: "#",
+        icon: "circleArrow",
+      },
+    ],
+  },
 ];
 
 export const cardItemsHi: CardProduct[] = [

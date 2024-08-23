@@ -18,7 +18,7 @@ export default function Video({
 }) {
   return (
     <section
-      className={cn("bg-cover", className)}
+      className={cn("bg-cover bg-center bg-no-repeat", className)}
       style={{
         backgroundImage: `url(${backgroundImage || "/images/bg-beige-texture.jpg"})`,
       }}

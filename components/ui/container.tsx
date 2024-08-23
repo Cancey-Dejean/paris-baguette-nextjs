@@ -12,7 +12,7 @@ export default function Container({
   children,
   className,
 }: {
-  size?: "base" | "contained" | "compact";
+  size?: keyof typeof containerSizes;
   className?: string;
   children: React.ReactNode;
 } & React.HTMLAttributes<HTMLDivElement>) {

@@ -175,7 +175,7 @@ export default function Footer({ socialHeading }: { socialHeading?: string }) {
         </div>
 
         <div>
-          <h3 className="mb-5 font-pbSpecial text-2xl font-semibold uppercase">
+          <h3 className="mb-5 font-pbSpecial text-2xl font-semibold uppercase text-white">
             {socialHeading}
           </h3>
 
