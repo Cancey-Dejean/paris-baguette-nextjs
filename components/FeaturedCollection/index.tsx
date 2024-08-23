@@ -3,6 +3,7 @@ import ProductCard from "@/components/Cards/ProductCard";
 import { CardProduct } from "@/types";
 import { twMerge } from "tailwind-merge";
 import HeaderLine from "../ui/headerLine";
+import { HTMLAttributes } from "react";
 
 const columnSizes = {
   two: "grid-cols-2",
@@ -15,26 +16,24 @@ export default function FeaturedCollection({
   description,
   cardItems,
   columnSize = "three",
+  ...props
 }: {
   title?: string;
   description?: string;
   cardItems: CardProduct[];
   columnSize?: keyof typeof columnSizes;
-}) {
+} & HTMLAttributes<HTMLElement>) {
   return (
-    <section
-      className="bg-[length:1200px_auto]"
-      style={{
-        backgroundImage: `url("/images/bg-beige-texture.jpg")`,
-      }}
-    >
+    <section {...props}>
       <Container size="contained">
-        <div className="mb-10">
-          {title && <h2 className="mb-2 font-pbSpecial text-5xl">{title}</h2>}
-          {description && <p className="mb-4 text-lg">{description}</p>}
+        {title && (
+          <div className="mb-10">
+            <h2 className="mb-2 font-pbSpecial text-5xl">{title}</h2>
+            {description && <p className="mb-4 text-lg">{description}</p>}
 
-          {title && <HeaderLine />}
-        </div>
+            {title && <HeaderLine />}
+          </div>
+        )}
 
         {cardItems && cardItems.length > 0 ? (
           <div className={twMerge("grid gap-9", columnSizes[columnSize])}>

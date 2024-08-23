@@ -106,12 +106,12 @@ export const cardItemsLo: CardProduct[] = [
     description: "This is a brief description",
     cardLinks: [
       {
-        label: "Button 1",
+        label: "Order Now",
         url: "#",
         icon: "cart",
       },
       {
-        label: "Button 2",
+        label: "Details",
         url: "#",
         icon: "circleArrow",
       },
@@ -124,12 +124,12 @@ export const cardItemsLo: CardProduct[] = [
     description: "This is a brief description",
     cardLinks: [
       {
-        label: "Button 1",
+        label: "Order Now",
         url: "#",
         icon: "cart",
       },
       {
-        label: "Button 2",
+        label: "Details",
         url: "#",
         icon: "circleArrow",
       },
@@ -142,12 +142,12 @@ export const cardItemsLo: CardProduct[] = [
     description: "This is a brief description",
     cardLinks: [
       {
-        label: "Button 1",
+        label: "Order Now",
         url: "#",
         icon: "cart",
       },
       {
-        label: "Button 2",
+        label: "Details",
         url: "#",
         icon: "circleArrow",
       },
@@ -160,12 +160,12 @@ export const cardItemsLo: CardProduct[] = [
     description: "This is a brief description",
     cardLinks: [
       {
-        label: "Button 1",
+        label: "Order Now",
         url: "#",
         icon: "cart",
       },
       {
-        label: "Button 2",
+        label: "Details",
         url: "#",
         icon: "circleArrow",
       },

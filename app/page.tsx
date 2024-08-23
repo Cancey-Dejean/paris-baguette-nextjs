@@ -19,8 +19,14 @@ export default function Home() {
           },
         ]}
       />
-
-      <FeaturedCollection cardItems={cardItemsHi} />
+      <div
+        className="bg-[length:1200px_auto]"
+        style={{
+          backgroundImage: `url("/images/bg-beige-texture.jpg")`,
+        }}
+      >
+        <FeaturedCollection cardItems={cardItemsHi} />
+      </div>
 
       <Rewards
         headline="Rewards"

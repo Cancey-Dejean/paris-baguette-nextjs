@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import { ProductCardIcons, ProductCardLink } from "@/types";
-import { cardLinks } from "@/lib/dummyData";
 
 const cardIcons: ProductCardIcons = {
   cart: "/images/icon-checkout.svg",
@@ -24,7 +23,7 @@ export default function ProductCard({
 }) {
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-t-[25px]">
-      <div className="group relative h-[290px] w-full min-w-[366px] overflow-hidden">
+      <div className="group relative min-h-[200px] w-full min-w-[366px] overflow-hidden">
         <Image
           src={image}
           alt={imageAlt}
