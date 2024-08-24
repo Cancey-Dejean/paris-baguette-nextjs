@@ -23,7 +23,7 @@ export default function ProductCard({
 }) {
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-t-[25px]">
-      <div className="group relative min-h-[200px] w-full min-w-[366px] overflow-hidden">
+      <div className="group relative min-h-[200px] w-full overflow-hidden">
         <Image
           src={image}
           alt={imageAlt}

@@ -6,9 +6,9 @@ import HeaderLine from "../ui/headerLine";
 import { HTMLAttributes } from "react";
 
 const columnSizes = {
-  two: "grid-cols-2",
-  three: "grid-cols-3",
-  four: "grid-cols-4",
+  two: "md:grid-cols-2",
+  three: "sm:grid-cols-2 md:grid-cols-3",
+  four: "md:grid-cols-4",
 };
 
 export default function FeaturedCollection({
