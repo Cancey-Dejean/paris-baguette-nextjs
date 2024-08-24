@@ -34,3 +34,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Resources
+
+- [Google Maps API](https://developers.google.com/maps/documentation/javascript/overview)
+- [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/overview)
+- [Google Maps React](https://developers.google.com/maps/documentation/javascript/react)
+- [Secure an API key](https://cloud.google.com/docs/authentication/api-keys?_gl=1*vj4o5n*_ga*MTYwNDI0MjEyNi4xNzI0NDY5MjE4*_ga_WH2QY8WWF5*MTcyNDQ2OTIxOC4xLjEuMTcyNDQ2OTY2My40Mi4wLjA.#securing)
