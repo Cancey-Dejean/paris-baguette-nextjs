@@ -7,17 +7,17 @@ import {
 } from "@react-google-maps/api";
 import Link from "next/link";
 import { DEFAULT_CENTER } from "@/lib/locations";
+import MapCard from "../Cards/MapCard";
 
 export type Location = {
   name?: string;
   lat?: number;
   lng?: number;
   address?: string;
-  description?: string;
-  image?: string;
   city?: string;
   state?: string;
   zipCode?: string;
+  distance?: number;
 };
 
 export type MapProps = {
@@ -117,18 +117,7 @@ export default function Map({
             position={{ lat: selectedLocation.lat, lng: selectedLocation.lng }}
             onCloseClick={() => setSelectedLocation(null)}
           >
-            <div>
-              <h2>{selectedLocation.name}</h2>
-              {selectedLocation.address && <p>{selectedLocation.address}</p>}
-              <div className="text-gray-500 text-sm">123-123-4562</div>
-              {selectedLocation.description && (
-                <p>{selectedLocation.description}</p>
-              )}
-              <div className="grid grid-cols-2">
-                <Link href="#">Visit Café</Link>
-                <Link href="#">Get Directions</Link>
-              </div>
-            </div>
+            <MapCard location={selectedLocation} className="p-0" />
           </InfoWindow>
         )}
     </GoogleMap>

@@ -9,6 +9,7 @@ import { RiDirectionLine, TablerSearch } from "@/components/ui/svgIcons";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import LineMdMapMarkerAlt from "@/components/ui/svgIcons";
+import MapCard from "@/components/Cards/MapCard";
 
 type LocationWithDistance = Location & {
   distance?: number;
@@ -39,7 +40,7 @@ export default function LocationsPage() {
           console.error("Error getting location:", error);
           useDefaultLocation();
         },
-        { timeout: 5000 }, // Set a timeout of 5 seconds
+        { timeout: 0 }, // Set a timeout of 5 seconds
       );
     } else {
       console.error("Geolocation is not supported by this browser.");
@@ -164,7 +165,7 @@ export default function LocationsPage() {
   return (
     <>
       <Hero mainImage="/images/hero.jpg" headline="Café Locator" size="short" />
-      <section className="grid grid-cols-[400px_1fr] gap-[28px]">
+      <section className="grid gap-[28px] lg:grid-cols-[400px_1fr]">
         <div>
           <h1 className="mb-4 text-2xl font-medium">Search for a Café</h1>
           <div className="border-gray-300 relative mb-4 flex rounded-sm border">
@@ -187,55 +188,20 @@ export default function LocationsPage() {
           <Button onClick={handleUseMyLocation} className="mb-4 w-full text-sm">
             current location
           </Button>
-          <div className="flex flex-col divide-y divide-primary border-y border-y-primary">
+
+          <div className="flex h-full max-h-[590px] flex-col divide-y divide-primary overflow-y-scroll border-y border-y-primary">
             {filteredLocations.length > 0 ? (
               filteredLocations.map((location) => (
                 <div
                   key={location.name}
                   onClick={() => handleLocationClick(location)}
-                  className={`cursor-pointer p-5 transition-colors duration-300 ease-in-out hover:bg-[#fcf8f0] ${
+                  className={`cursor-pointer transition-colors duration-300 ease-in-out hover:bg-[#fcf8f0] ${
                     selectedLocation?.name === location.name
                       ? "bg-[#fcf8f0]"
                       : ""
                   }`}
                 >
-                  <h3 className="flex items-center justify-between gap-1">
-                    <span className="mb-1 font-pbBold uppercase text-primary">
-                      {location.name}
-                    </span>
-
-                    {location.distance !== undefined && (
-                      <span className="font-pbRegular text-xs lowercase">
-                        {location.distance} mi.
-                      </span>
-                    )}
-                  </h3>
-                  <div className="text-gray-500">
-                    <p className="text-base">
-                      {location.address}
-                      <br />
-                      {location.city}, {location.state}
-                    </p>
-                  </div>
-                  <div
-                    className={twMerge(
-                      "mt-3 grid grid-cols-2",
-                      "[&_a]:flex [&_a]:items-center [&_a]:gap-1 [&_a]:font-pbBold [&_a]:font-bold [&_a]:uppercase [&_a]:text-primary",
-                    )}
-                  >
-                    <Link href={"#"}>
-                      <span>
-                        <LineMdMapMarkerAlt />
-                      </span>
-                      Visit
-                    </Link>
-                    <Link href={"#"}>
-                      <span>
-                        <RiDirectionLine />
-                      </span>
-                      Directions
-                    </Link>
-                  </div>
+                  <MapCard location={location} />
                 </div>
               ))
             ) : (
@@ -245,12 +211,14 @@ export default function LocationsPage() {
             )}
           </div>
         </div>
-        <Map
-          locations={filteredLocations}
-          selectedLocation={selectedLocation}
-          setSelectedLocation={setSelectedLocation}
-          userLocation={userLocation}
-        />
+        <div className="hidden lg:flex">
+          <Map
+            locations={filteredLocations}
+            selectedLocation={selectedLocation}
+            setSelectedLocation={setSelectedLocation}
+            userLocation={userLocation}
+          />
+        </div>
       </section>
     </>
   );

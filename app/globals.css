@@ -173,6 +173,10 @@
   @apply !mb-[42px];
 }
 
+.gm-style-iw-c {
+  @apply !w-full !max-w-[400px];
+}
+
 .hide-overflow {
   @apply overflow-hidden;
 }
