@@ -25,6 +25,7 @@ export default function LocationsPage() {
     lat: number;
     lng: number;
   } | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const getUserLocation = () => {
     if ("geolocation" in navigator) {
@@ -63,6 +64,7 @@ export default function LocationsPage() {
   const handleSearch = async () => {
     if (searchTerm.trim() === "") {
       setFilteredLocations(locations);
+      setErrorMessage(null);
       return;
     }
 
@@ -104,9 +106,13 @@ export default function LocationsPage() {
       );
       setFilteredLocations(locationsWithDistance);
       setUserLocation(searchLocation);
+      setErrorMessage(null);
     } catch (error) {
       console.error("Error geocoding address:", error);
-      alert("Unable to find the location. Please try a different search term.");
+      setFilteredLocations([]);
+      setErrorMessage(
+        "Unable to find the location. Please try a different search term.",
+      );
     }
   };
 
