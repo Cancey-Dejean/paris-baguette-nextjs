@@ -5,6 +5,10 @@ import Map, { Location } from "@/components/Map";
 import { Input } from "@/components/ui/input";
 import Hero from "@/components/Hero";
 import { Button } from "@/components/ui/button";
+import { RiDirectionLine, TablerSearch } from "@/components/ui/svgIcons";
+import Link from "next/link";
+import { twMerge } from "tailwind-merge";
+import LineMdMapMarkerAlt from "@/components/ui/svgIcons";
 
 type LocationWithDistance = Location & {
   distance?: number;
@@ -154,24 +158,28 @@ export default function LocationsPage() {
   return (
     <>
       <Hero mainImage="/images/hero.jpg" headline="Café Locator" size="short" />
-      <section className="grid grid-cols-[500px_1fr] gap-[28px]">
+      <section className="grid grid-cols-[400px_1fr] gap-[28px]">
         <div>
           <h1 className="mb-4 text-2xl font-medium">Search for a Café</h1>
-          <div className="mb-4 flex">
+          <div className="border-gray-300 relative mb-4 flex rounded-sm border">
             <Input
               type="text"
               placeholder="Enter zip code or city, state"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyDown={handleKeyPress}
-              className="border-gray-300 flex-grow rounded-l border p-4 font-pbSpecial placeholder:text-xl"
+              className="flex-grow border-transparent p-4 font-pbSpecial placeholder:text-base"
             />
-            <Button onClick={handleSearch} className="rounded-r">
-              Search
-            </Button>
+            <button
+              type="button"
+              onClick={handleSearch}
+              className="absolute right-0 flex size-10 items-center justify-center"
+            >
+              <TablerSearch className="size-6" />
+            </button>
           </div>
-          <Button onClick={handleUseMyLocation} className="mb-4 w-full">
-            Use my current location
+          <Button onClick={handleUseMyLocation} className="mb-4 w-full text-sm">
+            current location
           </Button>
           <div className="flex flex-col divide-y divide-primary border-y border-y-primary">
             {filteredLocations.length > 0 ? (
@@ -179,24 +187,49 @@ export default function LocationsPage() {
                 <div
                   key={location.name}
                   onClick={() => handleLocationClick(location)}
-                  className={`cursor-pointer px-5 py-4 transition-colors duration-300 ease-in-out hover:bg-[#fcf8f0] ${
+                  className={`cursor-pointer p-5 transition-colors duration-300 ease-in-out hover:bg-[#fcf8f0] ${
                     selectedLocation?.name === location.name
                       ? "bg-[#fcf8f0]"
                       : ""
                   }`}
                 >
-                  <div>{location.name}</div>
-                  <div className="text-gray-500 text-sm">
-                    <p>{location.address}</p>
-                    <p>
+                  <h3 className="flex items-center justify-between gap-1">
+                    <span className="mb-1 font-pbBold uppercase text-primary">
+                      {location.name}
+                    </span>
+
+                    {location.distance !== undefined && (
+                      <span className="font-pbRegular text-xs lowercase">
+                        {location.distance} mi.
+                      </span>
+                    )}
+                  </h3>
+                  <div className="text-gray-500">
+                    <p className="text-base">
+                      {location.address}
+                      <br />
                       {location.city}, {location.state}
                     </p>
                   </div>
-                  {location.distance !== undefined && (
-                    <div className="text-gray-500 text-sm">
-                      {location.distance} mi
-                    </div>
-                  )}
+                  <div
+                    className={twMerge(
+                      "mt-3 grid grid-cols-2",
+                      "[&_a]:flex [&_a]:items-center [&_a]:gap-1 [&_a]:font-pbBold [&_a]:font-bold [&_a]:uppercase [&_a]:text-primary",
+                    )}
+                  >
+                    <Link href={"#"}>
+                      <span>
+                        <LineMdMapMarkerAlt />
+                      </span>
+                      Visit
+                    </Link>
+                    <Link href={"#"}>
+                      <span>
+                        <RiDirectionLine />
+                      </span>
+                      Directions
+                    </Link>
+                  </div>
                 </div>
               ))
             ) : (
