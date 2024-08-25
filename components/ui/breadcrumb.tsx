@@ -2,12 +2,9 @@ import Link from "next/link";
 import React from "react";
 import { twMerge } from "tailwind-merge";
 
-export default function Breadcrumb() {
+export default function Breadcrumb({ className }: { className?: string }) {
   return (
-    <nav
-      aria-label="Breadcrumb"
-      className="border-gray-200 bg-purple-50 rounded-md border p-4"
-    >
+    <nav aria-label="Breadcrumb" className={twMerge(className)}>
       <ol className={twMerge("m-0 list-none p-0")}>
         <li className="before:rotate-15 before:border-current inline before:mx-1 before:inline-block before:h-3 before:border-r before:content-['']">
           <Link href="../../../.." className="underline">
