@@ -8,12 +8,15 @@ import {
 import Link from "next/link";
 
 export type Location = {
-  name: string;
-  lat: number;
-  lng: number;
+  name?: string;
+  lat?: number;
+  lng?: number;
   address?: string;
   description?: string;
   image?: string;
+  city?: string;
+  state?: string;
+  zipCode?: string;
 };
 
 export type MapProps = {
@@ -25,7 +28,7 @@ export type MapProps = {
 
 const containerStyle = {
   width: "100%",
-  height: "600px",
+  height: "100%",
 };
 
 const getMarkerIcon = (location: Location) => {
@@ -58,12 +61,27 @@ export default function Map({
   }, []);
 
   useEffect(() => {
-    if (userLocation) {
+    if (
+      selectedLocation &&
+      typeof selectedLocation.lat === "number" &&
+      typeof selectedLocation.lng === "number"
+    ) {
+      const newCenter = {
+        lat: selectedLocation.lat,
+        lng: selectedLocation.lng,
+      };
+      setCenter(newCenter);
+      map?.panTo(newCenter);
+    } else if (userLocation) {
       setCenter(userLocation);
-    } else if (locations.length > 0) {
+    } else if (
+      locations.length > 0 &&
+      typeof locations[0].lat === "number" &&
+      typeof locations[0].lng === "number"
+    ) {
       setCenter({ lat: locations[0].lat, lng: locations[0].lng });
     }
-  }, [userLocation, locations]);
+  }, [selectedLocation, userLocation, locations, map]);
 
   if (!isLoaded) return <div>Loading...</div>;
 
@@ -75,15 +93,19 @@ export default function Map({
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
-      {locations.map((location, index) => (
-        <Marker
-          key={index}
-          position={{ lat: location.lat, lng: location.lng }}
-          title={location.name}
-          onClick={() => setSelectedLocation(location)}
-          icon={getMarkerIcon(location)}
-        />
-      ))}
+      {locations.map(
+        (location, index) =>
+          location.lat &&
+          location.lng && (
+            <Marker
+              key={index}
+              position={{ lat: location.lat, lng: location.lng }}
+              title={location.name}
+              onClick={() => setSelectedLocation(location)}
+              icon={getMarkerIcon(location)}
+            />
+          ),
+      )}
       {userLocation && (
         <Marker
           position={userLocation}
@@ -92,25 +114,27 @@ export default function Map({
           }}
         />
       )}
-      {selectedLocation && selectedLocation.lat && selectedLocation.lng && (
-        <InfoWindow
-          position={{ lat: selectedLocation.lat, lng: selectedLocation.lng }}
-          onCloseClick={() => setSelectedLocation(null)}
-        >
-          <div>
-            <h2>{selectedLocation.name}</h2>
-            {selectedLocation.address && <p>{selectedLocation.address}</p>}
-            <div className="text-gray-500 text-sm">123-123-4562</div>
-            {selectedLocation.description && (
-              <p>{selectedLocation.description}</p>
-            )}
-            <div className="grid grid-cols-2">
-              <Link href="#">Visit Café</Link>
-              <Link href="#">Get Directions</Link>
+      {selectedLocation &&
+        typeof selectedLocation.lat === "number" &&
+        typeof selectedLocation.lng === "number" && (
+          <InfoWindow
+            position={{ lat: selectedLocation.lat, lng: selectedLocation.lng }}
+            onCloseClick={() => setSelectedLocation(null)}
+          >
+            <div>
+              <h2>{selectedLocation.name}</h2>
+              {selectedLocation.address && <p>{selectedLocation.address}</p>}
+              <div className="text-gray-500 text-sm">123-123-4562</div>
+              {selectedLocation.description && (
+                <p>{selectedLocation.description}</p>
+              )}
+              <div className="grid grid-cols-2">
+                <Link href="#">Visit Café</Link>
+                <Link href="#">Get Directions</Link>
+              </div>
             </div>
-          </div>
-        </InfoWindow>
-      )}
+          </InfoWindow>
+        )}
     </GoogleMap>
   );
 }

@@ -168,6 +168,11 @@
   }
 }
 
+/* Map */
+.gm-style-iw-t {
+  @apply !mb-[42px];
+}
+
 .hide-overflow {
   @apply overflow-hidden;
 }

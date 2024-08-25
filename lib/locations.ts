@@ -1,8 +1,8 @@
 export const locations = [
   {
-    name: "Location 1",
-    lat: 32.93043478515877,
-    lng: -96.99434649376646,
+    name: "Airport Blvd",
+    lat: 30.32616949085675,
+    lng: -97.7151428577562,
     address: "110 Jacob Fontaine Lane",
     city: "Austin",
     state: "TX",
@@ -11,9 +11,9 @@ export const locations = [
     image: "/images/hero.jpg",
   },
   {
-    name: "Location 2",
-    lat: 37.72415597531749,
-    lng: -97.22382082636004,
+    name: "Wichita",
+    lat: 37.72450986022072,
+    lng: -97.22383706258971,
     address: "9780 E 21st St N",
     city: "Wichita",
     state: "KS",
@@ -44,3 +44,8 @@ export const locations = [
     image: "/images/hero.jpg",
   },
 ];
+
+export const DEFAULT_CENTER = {
+  lat: locations[0].lat,
+  lng: locations[0].lng,
+};

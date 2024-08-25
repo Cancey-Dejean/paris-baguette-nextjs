@@ -1,20 +1,20 @@
 "use client";
-import { useState, useEffect } from "react";
-import { locations } from "@/lib/locations";
+import { useState, useEffect, KeyboardEvent } from "react";
+import { DEFAULT_CENTER, locations } from "@/lib/locations";
 import Map, { Location } from "@/components/Map";
 import { Input } from "@/components/ui/input";
 import Hero from "@/components/Hero";
 import { Button } from "@/components/ui/button";
-import Script from "next/script";
 
-interface LocationWithDistance extends Location {
+type LocationWithDistance = Location & {
   distance?: number;
-}
+};
 
 export default function LocationsPage() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredLocations, setFilteredLocations] =
-    useState<LocationWithDistance[]>(locations);
+  const [filteredLocations, setFilteredLocations] = useState<
+    LocationWithDistance[]
+  >([]);
   const [selectedLocation, setSelectedLocation] =
     useState<LocationWithDistance | null>(null);
   const [userLocation, setUserLocation] = useState<{
@@ -72,11 +72,17 @@ export default function LocationsPage() {
     }
   };
 
+  const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   const handleLocationClick = (location: LocationWithDistance) => {
     setSelectedLocation(location);
   };
 
-  const handleUseMyLocation = () => {
+  const getUserLocation = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -99,6 +105,10 @@ export default function LocationsPage() {
     }
   };
 
+  const handleUseMyLocation = () => {
+    getUserLocation();
+  };
+
   const filterLocationsByDistance = (lat: number, lng: number) => {
     const locationsWithDistance = locations.map((location) => ({
       ...location,
@@ -114,7 +124,7 @@ export default function LocationsPage() {
     lat2: number,
     lon2: number,
   ) => {
-    const R = 6371; // Radius of the earth in km
+    const R = 3959; // Radius of the earth in miles
     const dLat = deg2rad(lat2 - lat1);
     const dLon = deg2rad(lon2 - lon1);
     const a =
@@ -124,13 +134,18 @@ export default function LocationsPage() {
         Math.sin(dLon / 2) *
         Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const d = R * c; // Distance in km
+    const d = R * c; // Distance in miles
     return Math.round(d * 10) / 10; // Round to 1 decimal place
   };
 
   const deg2rad = (deg: number) => {
     return deg * (Math.PI / 180);
   };
+
+  useEffect(() => {
+    // Calculate initial distances from the default center
+    filterLocationsByDistance(DEFAULT_CENTER.lat, DEFAULT_CENTER.lng);
+  }, []);
 
   return (
     <>
@@ -144,6 +159,7 @@ export default function LocationsPage() {
               placeholder="Enter zip code or city, state"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyDown={handleKeyPress}
               className="border-gray-300 flex-grow rounded-l border p-4 font-pbSpecial placeholder:text-xl"
             />
             <Button onClick={handleSearch} className="rounded-r">
@@ -167,11 +183,14 @@ export default function LocationsPage() {
                 >
                   <div>{location.name}</div>
                   <div className="text-gray-500 text-sm">
-                    {location.city}, {location.state} {location.zipCode}
+                    <p>{location.address}</p>
+                    <p>
+                      {location.city}, {location.state}
+                    </p>
                   </div>
                   {location.distance !== undefined && (
                     <div className="text-gray-500 text-sm">
-                      {location.distance} km away
+                      {location.distance} miles away
                     </div>
                   )}
                 </div>
