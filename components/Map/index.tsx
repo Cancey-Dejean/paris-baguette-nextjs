@@ -1,34 +1,31 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import Image from "next/image";
 import Link from "next/link";
 
-interface Location {
-  name?: string;
-  lat?: number;
-  lng?: number;
+export type Location = {
+  name: string;
+  lat: number;
+  lng: number;
   address?: string;
   description?: string;
   image?: string;
-}
+};
 
-interface MapProps {
+export type MapProps = {
   locations: Location[];
-}
+  selectedLocation: Location | null;
+  setSelectedLocation: (location: Location | null) => void;
+  userLocation: { lat: number; lng: number } | null;
+};
 
 const containerStyle = {
   width: "100%",
   height: "600px",
-};
-
-const center = {
-  lat: 40.7128,
-  lng: -74.006,
 };
 
 const getMarkerIcon = (location: Location) => {
@@ -38,11 +35,14 @@ const getMarkerIcon = (location: Location) => {
   };
 };
 
-export default function Map({ locations }: MapProps) {
+export default function Map({
+  locations,
+  selectedLocation,
+  setSelectedLocation,
+  userLocation,
+}: MapProps) {
   const [map, setMap] = useState<google.maps.Map | null>(null);
-  const [selectedLocation, setSelectedLocation] = useState<Location | null>(
-    null,
-  );
+  const [center, setCenter] = useState({ lat: 40.7128, lng: -74.006 });
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -57,6 +57,14 @@ export default function Map({ locations }: MapProps) {
     setMap(null);
   }, []);
 
+  useEffect(() => {
+    if (userLocation) {
+      setCenter(userLocation);
+    } else if (locations.length > 0) {
+      setCenter({ lat: locations[0].lat, lng: locations[0].lng });
+    }
+  }, [userLocation, locations]);
+
   if (!isLoaded) return <div>Loading...</div>;
 
   return (
@@ -70,12 +78,20 @@ export default function Map({ locations }: MapProps) {
       {locations.map((location, index) => (
         <Marker
           key={index}
-          position={{ lat: location.lat ?? 0, lng: location.lng ?? 0 }}
+          position={{ lat: location.lat, lng: location.lng }}
           title={location.name}
           onClick={() => setSelectedLocation(location)}
           icon={getMarkerIcon(location)}
         />
       ))}
+      {userLocation && (
+        <Marker
+          position={userLocation}
+          icon={{
+            url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+          }}
+        />
+      )}
       {selectedLocation && selectedLocation.lat && selectedLocation.lng && (
         <InfoWindow
           position={{ lat: selectedLocation.lat, lng: selectedLocation.lng }}
