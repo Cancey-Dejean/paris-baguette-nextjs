@@ -45,7 +45,12 @@ export const locations = [
   },
 ];
 
+// export const DEFAULT_CENTER = {
+//   lat: locations[0].lat,
+//   lng: locations[0].lng,
+// };
+
 export const DEFAULT_CENTER = {
-  lat: locations[0].lat,
-  lng: locations[0].lng,
+  lat: 39.8283, // Approximate center of the United States
+  lng: -98.5795,
 };

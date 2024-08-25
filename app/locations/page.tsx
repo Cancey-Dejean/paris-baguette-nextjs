@@ -22,6 +22,40 @@ export default function LocationsPage() {
     lng: number;
   } | null>(null);
 
+  const getUserLocation = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setUserLocation({ lat: latitude, lng: longitude });
+          filterLocationsByDistance(latitude, longitude);
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+          useDefaultLocation();
+        },
+        { timeout: 5000 }, // Set a timeout of 5 seconds
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+      useDefaultLocation();
+    }
+  };
+
+  const useDefaultLocation = () => {
+    setUserLocation(DEFAULT_CENTER);
+    filterLocationsByDistance(DEFAULT_CENTER.lat, DEFAULT_CENTER.lng);
+  };
+
+  const filterLocationsByDistance = (lat: number, lng: number) => {
+    const locationsWithDistance = locations.map((location) => ({
+      ...location,
+      distance: getDistance(lat, lng, location.lat!, location.lng!),
+    }));
+    locationsWithDistance.sort((a, b) => (a.distance || 0) - (b.distance || 0));
+    setFilteredLocations(locationsWithDistance);
+  };
+
   const handleSearch = async () => {
     if (searchTerm.trim() === "") {
       setFilteredLocations(locations);
@@ -82,40 +116,8 @@ export default function LocationsPage() {
     setSelectedLocation(location);
   };
 
-  const getUserLocation = () => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setUserLocation({ lat: latitude, lng: longitude });
-          setSearchTerm("Current Location");
-          filterLocationsByDistance(latitude, longitude);
-        },
-        (error) => {
-          console.error("Error getting location:", error);
-          alert(
-            "Unable to retrieve your location. Please try searching manually.",
-          );
-        },
-      );
-    } else {
-      alert(
-        "Geolocation is not supported by your browser. Please try searching manually.",
-      );
-    }
-  };
-
   const handleUseMyLocation = () => {
     getUserLocation();
-  };
-
-  const filterLocationsByDistance = (lat: number, lng: number) => {
-    const locationsWithDistance = locations.map((location) => ({
-      ...location,
-      distance: getDistance(lat, lng, location.lat, location.lng),
-    }));
-    locationsWithDistance.sort((a, b) => (a.distance || 0) - (b.distance || 0));
-    setFilteredLocations(locationsWithDistance);
   };
 
   const getDistance = (
@@ -143,8 +145,10 @@ export default function LocationsPage() {
   };
 
   useEffect(() => {
-    // Calculate initial distances from the default center
-    filterLocationsByDistance(DEFAULT_CENTER.lat, DEFAULT_CENTER.lng);
+    // Show all locations initially
+    setFilteredLocations(locations);
+    // Try to get user location
+    getUserLocation();
   }, []);
 
   return (
@@ -190,7 +194,7 @@ export default function LocationsPage() {
                   </div>
                   {location.distance !== undefined && (
                     <div className="text-gray-500 text-sm">
-                      {location.distance} miles away
+                      {location.distance} mi
                     </div>
                   )}
                 </div>

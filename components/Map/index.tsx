@@ -6,6 +6,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import Link from "next/link";
+import { DEFAULT_CENTER } from "@/lib/locations";
 
 export type Location = {
   name?: string;
@@ -45,7 +46,7 @@ export default function Map({
   userLocation,
 }: MapProps) {
   const [map, setMap] = useState<google.maps.Map | null>(null);
-  const [center, setCenter] = useState({ lat: 40.7128, lng: -74.006 });
+  const [center, setCenter] = useState(DEFAULT_CENTER);
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -66,22 +67,17 @@ export default function Map({
       typeof selectedLocation.lat === "number" &&
       typeof selectedLocation.lng === "number"
     ) {
-      const newCenter = {
-        lat: selectedLocation.lat,
-        lng: selectedLocation.lng,
-      };
-      setCenter(newCenter);
-      map?.panTo(newCenter);
+      setCenter({ lat: selectedLocation.lat, lng: selectedLocation.lng });
     } else if (userLocation) {
       setCenter(userLocation);
-    } else if (
-      locations.length > 0 &&
-      typeof locations[0].lat === "number" &&
-      typeof locations[0].lng === "number"
-    ) {
-      setCenter({ lat: locations[0].lat, lng: locations[0].lng });
     }
-  }, [selectedLocation, userLocation, locations, map]);
+  }, [selectedLocation, userLocation]);
+
+  useEffect(() => {
+    if (map && center) {
+      map.panTo(center);
+    }
+  }, [map, center]);
 
   if (!isLoaded) return <div>Loading...</div>;
 
